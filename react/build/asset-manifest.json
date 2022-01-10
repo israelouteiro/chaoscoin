@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4144c2ff.chunk.css",
+    "main.js": "/static/js/main.7be06083.chunk.js",
+    "main.js.map": "/static/js/main.7be06083.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9844a404.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9844a404.js.map",
+    "static/css/2.7ab6f613.chunk.css": "/static/css/2.7ab6f613.chunk.css",
+    "static/js/2.35e96b43.chunk.js": "/static/js/2.35e96b43.chunk.js",
+    "static/js/2.35e96b43.chunk.js.map": "/static/js/2.35e96b43.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.7ab6f613.chunk.css.map": "/static/css/2.7ab6f613.chunk.css.map",
+    "static/css/main.4144c2ff.chunk.css.map": "/static/css/main.4144c2ff.chunk.css.map",
+    "static/js/2.35e96b43.chunk.js.LICENSE.txt": "/static/js/2.35e96b43.chunk.js.LICENSE.txt",
+    "static/media/fog-low.png": "/static/media/fog-low.965eab52.png",
+    "static/media/login-image.jpg": "/static/media/login-image.21e8ba3f.jpg",
+    "static/media/paper-kit.scss?v=1.3.0": "/static/media/nucleo-icons.ec16bc4c.woff2",
+    "static/media/pexels-roberto-zuniga-5275220.jpg": "/static/media/pexels-roberto-zuniga-5275220.05610f13.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9844a404.js",
+    "static/css/2.7ab6f613.chunk.css",
+    "static/js/2.35e96b43.chunk.js",
+    "static/css/main.4144c2ff.chunk.css",
+    "static/js/main.7be06083.chunk.js"
+  ]
+}

