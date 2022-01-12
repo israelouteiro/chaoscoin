@@ -2056,6 +2056,9 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 .description {
   color: #9A9A9A; }
 
+.description a{
+  color: #f5bd0d; }
+
 blockquote small {
   font-style: normal; }
 
@@ -3854,7 +3857,7 @@ License - nucleoapp.com/license/
         top: 36%;
         left: 44%;
         font-size: 65px;
-        color: #f5593d;
+        color: #f2b81a;
         padding: 1px; }
       .section-nucleo-icons .icons-container i:nth-child(7) {
         top: 59%;

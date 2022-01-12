@@ -19,11 +19,11 @@ function SectionDark() {
               </p>
               <h2 className="title">Network</h2>
               <p className="description">
-                <a href="https://academy.binance.com/pt/articles/connecting-metamask-to-binance-smart-chain" target="new">Binance Smart Chain</a>
+                <a href="https://academy.binance.com/pt/articles/connecting-metamask-to-binance-smart-chain" style={{color: '#f2b81a'}} target="new">Binance Smart Chain</a>
               </p>
-              <h2 className="title">Total Supply</h2>
+              <h2 className="title">Circulation Supply</h2>
               <p className="description">
-                1.000T
+                3.000M
               </p>
               <h2 className="title">Burn Rate</h2>
               <p className="description">
@@ -31,7 +31,7 @@ function SectionDark() {
               </p>
               <h2 className="title">Burned Supply</h2>
               <p className="description">
-                1.500.000+
+                3.500.000+
               </p>
             </Col>
           </Row>
