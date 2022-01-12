@@ -23,8 +23,7 @@ function DemoFooter() {
           </nav>
           <div className="credits ml-auto">
             <span className="copyright">
-              © {new Date().getFullYear()}, made with{" "}
-              <i className="fa fa-heart heart" /> by Bad Dogs UTH Team 
+              © {new Date().getFullYear()}, by Bad Dogs
             </span>
           </div>
         </Row>
