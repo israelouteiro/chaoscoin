@@ -15,7 +15,7 @@ function SectionDarkTop() {
             <Col className="ml-auto mr-auto text-center" md="8">
               <h2 className="title">Forged in hellfire to be solid as a diamond, a New Way to thing about De-FI</h2>
               <p className="description">
-                With our small consumption rate, you can hold and trade without worrying about losing money. we understand that time is our ally. because nothing escapes the chaos 
+                With our small consumption rate, you can hold and trade without worrying about losing money. we understand that time is our ally. because nothing escapes from chaos 
               </p>
             </Col>
           </Row>

@@ -23,7 +23,7 @@ function SectionDark() {
               </p>
               <h2 className="title">Circulation Supply</h2>
               <p className="description">
-                3.000M
+                3.00B
               </p>
               <h2 className="title">Burn Rate</h2>
               <p className="description">

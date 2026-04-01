@@ -16,7 +16,7 @@ function SectionNucleoIcons() {
               <h2 className="title">Chaos Coin</h2>
               <br />
               <p className="description">
-                Created to be unpredictable just like you. A coin with a simple proposal will be amazing. seize this opportunity we wait for you on the other side, the chaotic side of the force.
+                Created to be unpredictable just like you. A coin with a simple proposal Be Amazing. seize this opportunity we wait for you on the other side, the chaotic side of the force.
               </p>
               {/* 
                 <br />

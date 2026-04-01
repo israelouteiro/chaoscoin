@@ -1,0 +1,73 @@
+name: Deploy Static React Folder
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required secrets
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          if [ -z "$SSH_PRIVATE_KEY" ]; then
+            echo "A variavel SSH_PRIVATE_KEY nao esta definida. Abortando workflow."
+            exit 1
+          fi
+          if [ -z "$EC2_IP" ]; then
+            echo "A variavel EC2_IP nao esta definida. Abortando workflow."
+            exit 1
+          fi
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify react folder exists
+        run: |
+          if [ ! -d "react" ]; then
+            echo "A pasta react nao foi encontrada no repositório."
+            exit 1
+          fi
+
+      - name: Install SSH tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client rsync
+
+      - name: Configure SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > /tmp/server.pem
+          chmod 400 /tmp/server.pem
+
+      - name: Ensure target directory exists
+        env:
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -i /tmp/server.pem ubuntu@$EC2_IP \
+            "sudo mkdir -p /var/www/html/chaoscoin && sudo chown -R ubuntu:ubuntu /var/www/html/chaoscoin"
+
+      - name: Sync static files to EC2
+        env:
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no -i /tmp/server.pem" \
+            react/ ubuntu@$EC2_IP:/var/www/html/chaoscoin/
+
+      - name: Fix permissions
+        env:
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -i /tmp/server.pem ubuntu@$EC2_IP \
+            "sudo chmod -R 755 /var/www/html/chaoscoin"
